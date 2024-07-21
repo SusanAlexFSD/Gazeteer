@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gazetteer</title>
+
+    <!-- Font Awesome Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" type="text/css"/>
+
+    <!-- StyleSheet Links -->
+    
+    <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="node_modules/toastify-js/src/toastify.css">
+    <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="node_modules/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css" />
+    <link rel="stylesheet" href="node_modules/leaflet-easybutton/src/easy-button.css" />
+    <link rel="icon" href="icons/favicon.png">
+    <link rel="stylesheet" href="libs/style.css" />
+
+</head>
+
+<body>
+    <div class="form-group">
+        <select class="form-control" id="countryDropdown">
+            <option value="">Select a Country</option>
+        </select>
+    </div>
+
+    <div id="map"></div>
+
+ 
+    <!-- Container for the checkboxes -->
+    <div id="checkboxContainer" class="container mt-3">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="toggleAirports">
+            <label class="form-check-label" for="toggleAirports">Show Airports</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="toggleRestaurant">
+            <label class="form-check-label" for="toggleRestaurant">Show Restaurants</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="toggleMuseums">
+            <label class="form-check-label" for="toggleMuseums">Show Museums</label>
+        </div>
+    </div>
+    
+
+    <!-- Preloader HTML -->
+    <div id="preloader">Loading...</div>
+    <div id="main-content" class="hidden">
+
+      
+
+       
+
+    <!-- Country Data Section -->
+    <div id="countryInfoResults" class="modal" data-bs-backdrop="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-primary bg-gradient text-white">
+                    <h5 class="modal-title">Overview</h5>
+                    <button type="button" class="btn-close btn-close-white" id="countryInfoBtn" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-globe"></i> Country</td>
+                                <td id="txtCountry"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-flag"></i> Capital</td>
+                                <td id="txtCapital"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-globe-americas"></i> Continent</td>
+                                <td id="txtContinent"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-users"></i> Population</td>
+                                <td id="txtPopulation"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-comments"></i> Languages</td>
+                                <td id="txtLanguages"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-dollar-sign"></i> Currency Code</td>
+                                <td id="txtCurrencyCode"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-bars"></i> isoAlpha3</td>
+                                <td id="txtisoAlpha3"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-ruler-combined"></i> Area (km&sup2;)</td>
+                                <td id="txtArea"></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+<!-- Weather Data Section -->
+<div id="weatherInfoResults" class="modal" data-bs-backdrop="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content shadow">
+            <div class="modal-header bg-primary bg-gradient text-white">
+                <h5 class="modal-title" id="weatherModalLabel">
+                    Overview
+                </h5>
+                <button type="button" class="btn-close btn-close-white" id="weatherInfoBtn" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <tbody id="currentWeather">
+                        <!-- Current weather data will be injected here -->
+                    </tbody>
+                </table>
+                <div id="forecast" class="row"></div> <!-- Modified for grid layout -->
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+<!-- Currency & Exchange Data Section -->
+<div id="currencyDropdowns">
+    <!-- Currency Converter Modal -->
+    <div id="currencyInfoResults" class="modal" data-bs-backdrop="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-primary bg-gradient text-white">
+                    <h5 class="modal-title">Currency Converter</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- From Currency and Amount Box -->
+                    <div class="mb-3 border p-3 rounded">
+                        <label for="conversion_amount_modal" class="form-label">Amount</label>
+                        <input type="number" id="conversion_amount_modal" class="form-control mb-3" placeholder="Enter amount">
+                        <label for="fromCurrency_modal" class="form-label"> Convert From</label>
+                        <select id="fromCurrency_modal" class="form-select">
+                            <option value="">Select a Currency</option>
+                        </select>
+                    </div>
+
+                    <!-- To Currency and Conversion Rate Box -->
+                    <div class="mb-3 border p-3 rounded">
+                        <label for="toCurrency_modal" class="form-label">Convert To</label>
+                        <select id="toCurrency_modal" class="form-select mb-3">
+                            <option value="">Select a Currency</option>
+                        </select>
+                        <div>
+                            <span id="conversionRate_modal"></span>
+                        </div>
+                    </div>
+
+                    <!-- Conversion Result Box -->
+                    <div id="conversionResult_modal" class="border p-3 rounded"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Wikipedia Data Section -->
+    <div id="wikipediaInfoResults" class="modal" data-bs-backdrop="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-primary bg-gradient text-white">
+                    <h5 class="modal-title">Wikipedia Information</h5>
+                    <button type="button" class="btn-close btn-close-white" id="wikipediaCloseBtn" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="wikiContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Data Section -->
+    <div id="newsInfoResults" class="modal" data-bs-backdrop="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-primary bg-gradient text-white">
+                    <h5 class="modal-title">News Headlines</h5>
+                    <button type="button" class="btn-close btn-close-white" id="newsInfoBtn" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="newsInfoBody">
+                    <!-- News articles will be displayed here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeModalButton" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    <!-- JavaScript Links -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>.
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="node_modules/toastify-js/src/toastify.js"></script>
+    <script src="node_modules/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="node_modules/leaflet-extra-markers/dist/js/leaflet.extra-markers.js"></script>
+    <script src="node_modules/leaflet-easybutton/src/easy-button.js"></script>
+    <script src="numeral.min.js"></script>
+    <script type="application/javascript" src="libs/app.js"></script>
+</body>
+</html>
