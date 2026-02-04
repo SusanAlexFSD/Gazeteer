@@ -146,4 +146,3 @@ if ($response && isset($response['geonames'][0])) {
 $executionEndTime = microtime(true);
 $executionTime = $executionEndTime - $executionStartTime;
 error_log("Execution time: " . $executionTime . " seconds");
-

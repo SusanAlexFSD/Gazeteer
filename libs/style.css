@@ -1,163 +1,163 @@
 html, body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-/* Pre-loader */
-#preloader {
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  z-index: 1000;
-}
-
-/* Main */
-#main-content.hidden {
-  display: none;
-}
-
-#map {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-/* DropDown */
-#selectContainer {
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  padding: 11px 0;
-}
-
-#countryDropdown {
-  width: 200px;
-  margin: 10px auto 0;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%);
-  z-index: 1000;
-}
-
-/* Modals */
-.modal-body img {
-  max-width: 150px;
-  height: auto;
-  display: block;
-  margin-top: 10px;
-  max-height: 150px;
-}
-
-.modal-body i {
-  margin-right: 5px;
-}
-
-/* News */
-.article {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.article img {
-  max-width: 150px;
-  height: auto;
-  margin-right: 20px;
-}
-
-.article-content {
-  flex-grow: 1;
-}
-
-.article p {
-  margin: 0;
-}
-
-.article-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #333;
-}
-
-.article-link {
-  font-size: 0.9em;
-  color: #007bff;
-  text-decoration: none;
-}
-
-.article-link a {
-  color: #007bff;
-}
-
-/* CURRENCY */
-
-/* Custom background color for the conversion result box */
-#conversionResult_modal {
-  background-color: #e0f7fa; /* Change this to your desired color */
-  display: none; /* Ensure it starts hidden */
-}
-
-/* Weather */
-#weatherInfo {
-  width: 100px;
-  height: 100px;
-}
-
-.weatherInfoBox1 {
-  border: 1px solid #ccc; /* Thin border */
-  padding: 10px; /* Optional: Add padding to the box */
-}
-
-.weather-today-box {
-  border: 1px solid grey;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-.weather-today-box h6 {
-  margin: 0 0 10px 0;
-}
-
-.weather-today-content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-#weatherDescription {
-  flex: 1;
-}
-
-#temp_min_max {
-  font-weight: bold;
-}
-
-#checkboxContainer {
-  position: fixed;
-  bottom: 20px; /* Adjust this value to change the vertical position */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1001; /* Ensure it's above the map */
-  visibility: hidden; /* Initially hide the container */
-}
-
-/* Show the checkbox container when necessary */
-#checkboxContainer.show {
-  visibility: visible;
-}
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Pre-loader */
+  #preloader {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    z-index: 1000;
+  }
+  
+  /* Main */
+  #main-content.hidden {
+    display: none;
+  }
+  
+  #map {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* DropDown */
+  #selectContainer {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    padding: 11px 0;
+  }
+  
+  #countryDropdown {
+    width: 200px;
+    margin: 10px auto 0;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1000;
+  }
+  
+  /* Modals */
+  .modal-body img {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+    max-height: 150px;
+  }
+  
+  .modal-body i {
+    margin-right: 5px;
+  }
+  
+  /* News */
+  .article {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .article img {
+    max-width: 150px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .article-content {
+    flex-grow: 1;
+  }
+  
+  .article p {
+    margin: 0;
+  }
+  
+  .article-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .article-link {
+    font-size: 0.9em;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .article-link a {
+    color: #007bff;
+  }
+  
+  /* CURRENCY */
+  
+  /* Custom background color for the conversion result box */
+  #conversionResult_modal {
+    background-color: #e0f7fa; /* Change this to your desired color */
+    display: none; /* Ensure it starts hidden */
+  }
+  
+  /* Weather */
+  #weatherInfo {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .weatherInfoBox1 {
+    border: 1px solid #ccc; /* Thin border */
+    padding: 10px; /* Optional: Add padding to the box */
+  }
+  
+  .weather-today-box {
+    border: 1px solid grey;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .weather-today-box h6 {
+    margin: 0 0 10px 0;
+  }
+  
+  .weather-today-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #weatherDescription {
+    flex: 1;
+  }
+  
+  #temp_min_max {
+    font-weight: bold;
+  }
+  
+  #checkboxContainer {
+    position: fixed;
+    bottom: 20px; /* Adjust this value to change the vertical position */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001; /* Ensure it's above the map */
+    visibility: hidden; /* Initially hide the container */
+  }
+  
+  /* Show the checkbox container when necessary */
+  #checkboxContainer.show {
+    visibility: visible;
+  }

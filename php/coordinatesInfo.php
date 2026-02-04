@@ -86,4 +86,3 @@ if (!empty($response) && isset($response[0])) {
 
 // Output the JSON response
 echo json_encode($output);
-

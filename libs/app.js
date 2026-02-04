@@ -864,4 +864,3 @@ weatherInfoBtn.addTo(map);
 currencyInfoBtn.addTo(map);
 wikipediaInfoBtn.addTo(map);
 newsInfoBtn.addTo(map);
-
